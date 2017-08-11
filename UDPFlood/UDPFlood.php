@@ -7,7 +7,7 @@ namespace UDPFlood {
 	$attackcount = 0;
 	$error = 0;
 
-	echo "\x1b[38;5;145mAttack IP: ";
+	echo "\x1b[38;5;145mTarget IP: ";
 	$ip = trim(fgets(STDIN));
 	
 	echo "\x1b[38;5;145mAttack count: ";
