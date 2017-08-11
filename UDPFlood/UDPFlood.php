@@ -26,7 +26,7 @@ namespace UDPFlood {
 		$port = mt_rand(1,65000);
 		
 		if($attackcount >= $count){
-			echo "\x1b[38;5;37mAttack successful! " . round(($attackcount*65)/1024, 2) . " MB packets sended." . PHP_EOL . "\x1b[m";
+			echo "\x1b[38;5;37mAttack successful! " . round(($attackcount * 20) / 1024, 2) . " MB packets sended." . PHP_EOL . "\x1b[m";
 			$running = false;
 		}
 		
